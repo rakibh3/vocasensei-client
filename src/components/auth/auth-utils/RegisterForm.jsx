@@ -9,8 +9,12 @@ import InputField from '@/components/ui/form/InputField';
 import PasswordField from '@/components/ui/form/PasswordField';
 import AvatarUpload from '@/components/ui/avatar-upload';
 import { registerSchema } from '@/lib/validators/auth';
+import { useRegisterMutation } from '@/redux/features/auth/authApi';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   const form = useForm({
@@ -23,13 +27,32 @@ const RegisterForm = () => {
     },
   });
 
+  const [register, { data, isLoading, error }] = useRegisterMutation();
+
+  useEffect(() => {
+    if (data?.success) {
+      navigate('/login');
+      toast({
+        title: 'Congratulations!',
+        description: `You have successfully registered with email: ${data?.data?.email}`,
+        status: 'success',
+        duration: 3000,
+      });
+    }
+
+    if (error?.data) {
+      toast({
+        title: 'Registration Failed',
+        description: error.data.errorMessage || error?.data?.message,
+        status: 'error',
+        duration: 3000,
+      });
+    }
+  }, [data, error, toast, navigate]);
+
   const onSubmit = (values) => {
-    toast({
-      title: 'Registration Attempt',
-      description: `Trying to register with email: ${values.email}`,
-    });
-    // Handle registration logic here
-    console.log(values);
+    const { name, email, password } = values;
+    register({ name, email, password });
   };
   return (
     <Form {...form}>
@@ -76,7 +99,7 @@ const RegisterForm = () => {
           placeholder="Confirm your password"
         />
 
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={isLoading}>
           Create Account
         </Button>
       </form>

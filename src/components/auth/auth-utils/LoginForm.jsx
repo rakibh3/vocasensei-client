@@ -9,8 +9,12 @@ import InputField from '@/components/ui/form/InputField';
 import PasswordField from '@/components/ui/form/PasswordField';
 import { Mail } from 'lucide-react';
 import { loginSchema } from '@/lib/validators/auth';
+import { useLoginMutation } from '@/redux/features/auth/authApi';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   const form = useForm({
@@ -21,12 +25,33 @@ const LoginForm = () => {
     },
   });
 
+  const [login, { data, isLoading, error }] = useLoginMutation();
+
+  useEffect(() => {
+    if (data?.success) {
+      // navigate('/');
+      toast({
+        title: 'Congratulations!',
+        description: `You have successfully login with email: ${data?.data?.user?.email}`,
+        status: 'success',
+        duration: 3000,
+      });
+    }
+
+    if (error?.data) {
+      console.log(error);
+      toast({
+        title: 'Login Failed',
+        description: error.data.errorMessage || error?.data?.message,
+        status: 'error',
+        duration: 3000,
+      });
+    }
+  }, [data, error, toast, navigate]);
+
   const onSubmit = (values) => {
-    toast({
-      title: 'Login Attempt',
-      description: `Trying to login with email: ${values.email}`,
-    });
-    console.log(values);
+    const { email, password } = values;
+    login({ email, password });
   };
 
   return (
@@ -47,7 +72,7 @@ const LoginForm = () => {
           placeholder="Enter your password"
         />
 
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={isLoading}>
           Login
         </Button>
       </form>
