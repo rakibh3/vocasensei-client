@@ -11,6 +11,8 @@ import Lessons from '@/pages/dashboard/lesson/Lessons';
 import CreateVocabulary from '@/pages/dashboard/vocabulary/CreateVocabulary';
 import Vocabularies from '@/pages/dashboard/vocabulary/Vocabularies';
 import ManageUser from '@/pages/dashboard/user/ManageUser';
+import LessonsPage from '@/pages/home/lessonsPage/LessonsPage';
+import LessonPage from '@/pages/home/lessonsPage/LessonPage';
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ export const router = createBrowserRouter([
         index: true,
         element: (
           <PrivateRoute allowedRoles={['user']}>
-            <div>Lesson</div>
+            <LessonsPage />
           </PrivateRoute>
         ),
       },
@@ -29,7 +31,15 @@ export const router = createBrowserRouter([
         path: '/lessons',
         element: (
           <PrivateRoute allowedRoles={['user']}>
-            <div>Lesson</div>
+            <LessonsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/lesson/:lessonId',
+        element: (
+          <PrivateRoute allowedRoles={['user']}>
+            <LessonPage />
           </PrivateRoute>
         ),
       },
@@ -61,27 +71,51 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashBoard />,
+        element: (
+          <PrivateRoute allowedRoles={['admin']}>
+            <DashBoard />,
+          </PrivateRoute>
+        ),
       },
       {
         path: 'users',
-        element: <ManageUser />,
+        element: (
+          <PrivateRoute allowedRoles={['admin']}>
+            <ManageUser />,
+          </PrivateRoute>
+        ),
       },
       {
         path: 'lessons',
-        element: <Lessons />,
+        element: (
+          <PrivateRoute allowedRoles={['admin']}>
+            <Lessons />,
+          </PrivateRoute>
+        ),
       },
       {
         path: 'lesson/create',
-        element: <CreateLesson />,
+        element: (
+          <PrivateRoute allowedRoles={['admin']}>
+            <CreateLesson />,
+          </PrivateRoute>
+        ),
       },
       {
         path: 'vocabulary/create',
-        element: <CreateVocabulary />,
+        element: (
+          <PrivateRoute allowedRoles={['admin']}>
+            <CreateVocabulary />,
+          </PrivateRoute>
+        ),
       },
       {
         path: 'vocabularies',
-        element: <Vocabularies />,
+        element: (
+          <PrivateRoute allowedRoles={['admin']}>
+            <Vocabularies />,
+          </PrivateRoute>
+        ),
       },
       {
         path: 'tutorials',
