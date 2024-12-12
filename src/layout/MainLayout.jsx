@@ -10,9 +10,7 @@ const MainLayout = () => {
     <div>Checking authentication...</div>
   ) : (
     <main className="min-h-screen place-items-center bg-gradient-to-br from-primary/5 via-secondary/5 to-muted/5">
-      <div className="mx-auto flex justify-center items-center">
-        <Navbar />
-      </div>
+      <Navbar />
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="mx-auto flex justify-center">
           <Outlet />
