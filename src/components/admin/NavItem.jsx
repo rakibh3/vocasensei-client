@@ -52,6 +52,7 @@ const AdminNavItem = ({ item }) => {
     return (
       <NavLink
         to={item?.href || '#'}
+        end={item?.href === '/dashboard'}
         className={({ isActive }) =>
           cn(
             'flex items-center gap-x-2 rounded-md px-2 py-2',
