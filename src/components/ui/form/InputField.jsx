@@ -15,6 +15,7 @@ const InputField = ({
   type = 'text',
   leftIcon,
   rightElement,
+  defaultValue = '',
 }) => {
   return (
     <FormField
@@ -37,6 +38,7 @@ const InputField = ({
                   rightElement ? 'pr-10' : ''
                 }`}
                 {...field}
+                value={field.value || defaultValue}
               />
               {rightElement && (
                 <div className="absolute right-0 top-0 h-full">

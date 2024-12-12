@@ -13,27 +13,50 @@ import {
 import ButtonLoader from '@/components/ui/button-loader';
 import InputField from '@/components/ui/form/InputField';
 import { lessonCreateFormSchema } from '@/lib/validators/lesson';
+import { useCreateLessonMutation } from '@/redux/features/lessons/lessonsApi';
+import { useEffect } from 'react';
+import { toast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const CreateLesson = () => {
+  const navigate = useNavigate();
   const form = useForm({
     resolver: zodResolver(lessonCreateFormSchema),
     defaultValues: {
       lessonName: '',
-      lessonNumber: 1,
+      lessonNumber: 0,
     },
   });
 
-  const onSubmit = async (data) => {
-    // try {
-    //   await createLesson(data);
-    //   toast.success('Lesson created successfully!');
-    //   form.reset({ name: '', number: 1 });
-    // } catch (error) {
-    //   toast.error('Failed to create lesson');
-    //   console.error('Error creating lesson:', error);
-    // }
+  const { reset } = form;
 
-    console.log(data);
+  const [createLesson, { data: lesson, isLoading, error }] =
+    useCreateLessonMutation();
+
+  useEffect(() => {
+    if (lesson?.success) {
+      reset();
+      navigate('/dashboard/lessons');
+      toast({
+        title: 'Congratulations!',
+        description: `You have successfully created the lesson: ${lesson?.data?.lessonName}`,
+        status: 'success',
+        duration: 3000,
+      });
+    }
+
+    if (error?.data) {
+      toast({
+        title: 'Lesson Creation Failed',
+        description: error.data.errorMessage || error?.data?.message,
+        status: 'error',
+        duration: 3000,
+      });
+    }
+  }, [lesson, error, navigate, reset]);
+
+  const onSubmit = async (data) => {
+    createLesson(data);
   };
 
   return (
@@ -71,6 +94,7 @@ const CreateLesson = () => {
                 type="submit"
                 className="w-full"
                 loading={form.formState.isSubmitting}
+                disabled={isLoading}
                 loadingText="Creating..."
               >
                 Create Lesson

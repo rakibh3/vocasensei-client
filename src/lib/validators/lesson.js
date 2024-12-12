@@ -11,3 +11,5 @@ export const lessonCreateFormSchema = z.object({
     .positive('Lesson number must be positive')
     .max(1000, 'Lesson number must be less than 1000'),
 });
+
+export const lessonUpdateFormSchema = lessonCreateFormSchema.partial();
