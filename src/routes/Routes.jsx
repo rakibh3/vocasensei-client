@@ -3,6 +3,9 @@ import MainLayout from '@/layout/MainLayout';
 import Home from '@/pages/home/Home';
 import Login from '@/components/auth/Login';
 import Register from '@/components/auth/Register';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import AdminLayout from '@/layout/AdminLayout';
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +18,53 @@ export const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login />,
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
         path: '/register',
-        element: <Register />,
+        element: (
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        ),
+      },
+      {
+        path: '/lessons',
+        element: (
+          <PrivateRoute allowedRoles={'user'}>
+            <div>Lesson</div>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute allowedRoles={['admin']}>
+        <AdminLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <div>Dashboard</div>,
+      },
+      {
+        path: 'users',
+        element: <div>User Management</div>,
+      },
+      {
+        path: 'lessons',
+        element: <div>Lessons Management</div>,
+      },
+      {
+        path: 'tutorials',
+        element: <div>Tutorials Management</div>,
       },
     ],
   },

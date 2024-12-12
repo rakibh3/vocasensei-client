@@ -1,26 +1,11 @@
-import { userLoggedIn } from '@/redux/features/auth/authSlice';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const useAuth = () => {
-  const dispatch = useDispatch();
-  const [authChecked, setAuthChecked] = useState(false);
+  const auth = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const localAuth = localStorage.getItem('auth');
-    if (localAuth) {
-      const auth = JSON.parse(localAuth);
-      if (auth.accessToken && auth.user) {
-        dispatch(
-          userLoggedIn({
-            accessToken: auth.accessToken,
-            user: auth.user,
-          })
-        );
-      }
-    }
-    setAuthChecked(true);
-  }, [dispatch, setAuthChecked]);
+  const isAuthenticated = !!auth?.accessToken && !!auth?.user;
 
-  return authChecked;
+  return {
+    currentUser: isAuthenticated ? auth?.user : null,
+  };
 };
