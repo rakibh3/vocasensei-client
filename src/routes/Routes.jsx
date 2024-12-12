@@ -9,6 +9,7 @@ import DashBoard from '@/pages/dashboard/DashBoard';
 import CreateLesson from '@/pages/dashboard/lesson/CreateLesson';
 import Lessons from '@/pages/dashboard/lesson/Lessons';
 import CreateVocabulary from '@/pages/dashboard/vocabulary/CreateVocabulary';
+import Vocabularies from '@/pages/dashboard/vocabulary/Vocabularies';
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
       {
         path: 'vocabulary/create',
         element: <CreateVocabulary />,
+      },
+      {
+        path: 'vocabularies',
+        element: <Vocabularies />,
       },
       {
         path: 'tutorials',

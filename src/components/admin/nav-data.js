@@ -53,8 +53,8 @@ export const adminNavData = [
     icon: BookOpen,
     children: [
       {
-        title: 'Vocabulary',
-        href: 'lessons',
+        title: 'Vocabularies',
+        href: 'vocabularies',
         icon: BookOpenCheck,
       },
       {
