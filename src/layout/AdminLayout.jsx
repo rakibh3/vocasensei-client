@@ -3,11 +3,13 @@ import { Outlet } from 'react-router-dom';
 
 const AdminLayout = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <div className="flex">
         <AdminSidebar />
-        <main className="flex-1 p-6">
-          <Outlet />
+        <main className="flex-1 px-4 py-8 md:px-8 md:py-12">
+          <div className="mx-auto max-w-7xl">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>
