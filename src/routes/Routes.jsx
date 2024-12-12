@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '@/layout/MainLayout';
-import Home from '@/pages/home/Home';
 import Login from '@/components/auth/Login';
 import Register from '@/components/auth/Register';
 import PrivateRoute from './PrivateRoute';
@@ -17,7 +16,19 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <PrivateRoute allowedRoles={['user']}>
+            <div>Lesson</div>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/lessons',
+        element: (
+          <PrivateRoute allowedRoles={['user']}>
+            <div>Lesson</div>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/login',
@@ -33,14 +44,6 @@ export const router = createBrowserRouter([
           <PublicRoute>
             <Register />
           </PublicRoute>
-        ),
-      },
-      {
-        path: '/lessons',
-        element: (
-          <PrivateRoute allowedRoles={['user']}>
-            <div>Lesson</div>
-          </PrivateRoute>
         ),
       },
     ],

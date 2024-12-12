@@ -17,6 +17,6 @@ const PrivateRoute = ({ allowedRoles, children }) => {
     return children;
   }
 
-  return <Navigate to="/unauthorized" replace />;
+  return <Navigate to="/login" replace />;
 };
 export default PrivateRoute;

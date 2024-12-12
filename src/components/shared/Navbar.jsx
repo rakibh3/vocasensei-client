@@ -46,7 +46,9 @@ const Navbar = () => {
             icon: Video,
           },
         ]
-      : [
+      : []),
+    ...(!currentUser
+      ? [
           {
             title: 'Login',
             href: '/login',
@@ -57,7 +59,8 @@ const Navbar = () => {
             href: '/register',
             icon: UserPlus,
           },
-        ]),
+        ]
+      : []),
   ];
 
   if (location.pathname.startsWith('/dashboard')) {
