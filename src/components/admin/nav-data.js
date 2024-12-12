@@ -16,7 +16,7 @@ export const adminNavData = [
     icon: LayoutDashboard,
   },
   {
-    title: 'User Management',
+    title: 'User',
     icon: Users,
     children: [
       {
@@ -32,7 +32,7 @@ export const adminNavData = [
     ],
   },
   {
-    title: 'Lesson Management',
+    title: 'Lesson',
     icon: BookOpen,
     children: [
       {
@@ -47,8 +47,25 @@ export const adminNavData = [
       },
     ],
   },
+
   {
-    title: 'Tutorial Management',
+    title: 'Vocabulary',
+    icon: BookOpen,
+    children: [
+      {
+        title: 'Vocabulary',
+        href: 'lessons',
+        icon: BookOpenCheck,
+      },
+      {
+        title: 'Create Vocabulary',
+        href: 'vocabulary/create',
+        icon: BadgePlus,
+      },
+    ],
+  },
+  {
+    title: 'Tutorial',
     icon: Video,
     children: [
       {

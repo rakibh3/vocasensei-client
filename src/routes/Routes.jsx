@@ -8,6 +8,7 @@ import AdminLayout from '@/layout/AdminLayout';
 import DashBoard from '@/pages/dashboard/DashBoard';
 import CreateLesson from '@/pages/dashboard/lesson/CreateLesson';
 import Lessons from '@/pages/dashboard/lesson/Lessons';
+import CreateVocabulary from '@/pages/dashboard/vocabulary/CreateVocabulary';
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: 'lesson/create',
         element: <CreateLesson />,
+      },
+      {
+        path: 'vocabulary/create',
+        element: <CreateVocabulary />,
       },
       {
         path: 'tutorials',
