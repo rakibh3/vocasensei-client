@@ -179,7 +179,7 @@ const Vocabularies = () => {
       </div>
 
       <EditVocabularyDialog
-        lesson={editingVocabulary}
+        vocabulary={editingVocabulary}
         onClose={() => setEditingVocabulary(null)}
         onUpdate={handleUpdate}
       />

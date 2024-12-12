@@ -9,50 +9,77 @@ import {
 } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 import ButtonLoader from '@/components/ui/button-loader';
-import { BookOpen, Hash } from 'lucide-react';
+import { BookOpen, Hash, Quote, Volume2 } from 'lucide-react';
 import InputField from '@/components/ui/form/InputField';
-import { lessonUpdateFormSchema } from '@/lib/validators/lesson';
+import { vocabularyUpdateFormSchema } from '@/lib/validators/Vocabulary';
 
-const EditVocabularyDialog = ({ lesson, onClose, onUpdate }) => {
+const EditVocabularyDialog = ({ vocabulary, onClose, onUpdate }) => {
   const form = useForm({
-    resolver: zodResolver(lessonUpdateFormSchema),
+    resolver: zodResolver(vocabularyUpdateFormSchema),
     defaultValues: {
-      lessonName: lesson?.lessonName || '',
-      lessonNumber: lesson?.lessonNumber || 0,
+      word: vocabulary?.word || '',
+      meaning: vocabulary?.meaning || '',
+      pronunciation: vocabulary?.pronunciation || '',
+      whenToSay: vocabulary?.whenToSay || '',
+      lessonNo: vocabulary?.lessonNo || 0,
     },
   });
 
   const { reset } = form;
   useEffect(() => {
-    if (lesson) {
+    if (vocabulary) {
       reset({
-        lessonName: lesson?.lessonName,
-        lessonNumber: lesson?.lessonNumber,
+        word: vocabulary?.word,
+        meaning: vocabulary?.meaning,
+        pronunciation: vocabulary?.pronunciation,
+        whenToSay: vocabulary?.whenToSay,
+        lessonNo: vocabulary?.lessonNo,
       });
     }
-  }, [lesson, reset]);
+  }, [vocabulary, reset]);
 
   const onSubmit = async (data) => {
-    onUpdate(lesson?._id, data);
+    onUpdate(vocabulary?._id, data);
   };
   return (
-    <Dialog open={!!lesson} onOpenChange={(open) => !open && onClose()}>
+    <Dialog open={!!vocabulary} onOpenChange={(open) => !open && onClose()}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Lesson</DialogTitle>
+          <DialogTitle>Edit vocabulary</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <InputField
               form={form}
-              name="lessonName"
-              label="Lesson Name"
-              placeholder="Enter lesson name"
+              name="word"
+              label="Word"
+              placeholder="Enter the word"
               leftIcon={<BookOpen className="h-4 w-4 mt-1" />}
             />
             <InputField
               form={form}
-              name="lessonNumber"
+              name="meaning"
+              label="Meaning"
+              placeholder="Enter the meaning"
+              leftIcon={<Quote className="h-4 w-4 mt-1" />}
+            />
+            <InputField
+              form={form}
+              name="pronunciation"
+              label="Pronunciation"
+              placeholder="Enter the pronunciation"
+              leftIcon={<Volume2 className="h-4 w-4 mt-1" />}
+            />
+            <InputField
+              form={form}
+              name="whenToSay"
+              label="When to Say"
+              placeholder="Enter context for when to use this word"
+              leftIcon={<BookOpen className="h-4 w-4 mt-1" />}
+            />
+            <InputField
+              form={form}
+              name="lessonNo"
               label="Lesson Number"
               placeholder="Enter lesson number"
               type="number"
@@ -64,7 +91,7 @@ const EditVocabularyDialog = ({ lesson, onClose, onUpdate }) => {
                 loading={form.formState.isSubmitting}
                 loadingText="Updating..."
               >
-                Update Lesson
+                Update Vocabulary
               </ButtonLoader>
             </div>
           </form>
