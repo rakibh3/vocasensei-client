@@ -10,6 +10,7 @@ import CreateLesson from '@/pages/dashboard/lesson/CreateLesson';
 import Lessons from '@/pages/dashboard/lesson/Lessons';
 import CreateVocabulary from '@/pages/dashboard/vocabulary/CreateVocabulary';
 import Vocabularies from '@/pages/dashboard/vocabulary/Vocabularies';
+import ManageUser from '@/pages/dashboard/user/ManageUser';
 
 export const router = createBrowserRouter([
   {
@@ -64,7 +65,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'users',
-        element: <div>User Management</div>,
+        element: <ManageUser />,
       },
       {
         path: 'lessons',

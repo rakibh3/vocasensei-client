@@ -4,7 +4,6 @@ import {
   BookOpen,
   BadgePlus,
   Video,
-  UserCog,
   BookOpenCheck,
   // VideoPlus,
 } from 'lucide-react';
@@ -23,11 +22,6 @@ export const adminNavData = [
         title: 'All Users',
         href: 'users',
         icon: Users,
-      },
-      {
-        title: 'User Roles',
-        href: 'user-roles',
-        icon: UserCog,
       },
     ],
   },

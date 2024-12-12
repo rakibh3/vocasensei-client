@@ -3,6 +3,28 @@ import { userLoggedIn } from './authSlice';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    // Endpoint to get all users
+    getAllUsers: builder.query({
+      query: () => ({
+        url: '/users',
+        method: 'GET',
+      }),
+      providesTags: ['Users'],
+    }),
+
+    // Endpoint to update user role
+    updateUserRole: builder.mutation({
+      query: ({ id, role }) => {
+        console.log(id, role);
+        return {
+          url: `/user/${id}`,
+          method: 'PATCH',
+          body: { role },
+        };
+      },
+      invalidatesTags: ['Users'],
+    }),
+
     // Register API endpoint
     register: builder.mutation({
       query: (data) => ({
@@ -42,7 +64,14 @@ export const authApi = baseApi.injectEndpoints({
         } catch (error) {}
       },
     }),
+
+    //
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = authApi;
+export const {
+  useGetAllUsersQuery,
+  useUpdateUserRoleMutation,
+  useRegisterMutation,
+  useLoginMutation,
+} = authApi;
