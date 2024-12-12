@@ -60,7 +60,7 @@ const RegisterForm = () => {
         <div className="space-y-2">
           <AvatarUpload
             onChange={(file) => form.setValue('photo', file)}
-            className="py-4"
+            className="pb-1"
           />
           {form.formState.errors.photo && (
             <p className="text-sm text-destructive text-center">

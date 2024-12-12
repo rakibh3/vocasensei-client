@@ -11,11 +11,11 @@ const MainLayout = () => {
   ) : (
     <main className="min-h-screen place-items-center bg-gradient-to-br from-primary/5 via-secondary/5 to-muted/5">
       <Navbar />
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+      <Outlet />
+      {/* <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="mx-auto flex justify-center">
-          <Outlet />
         </div>
-      </div>
+      </div> */}
       <Footer />
     </main>
   );
