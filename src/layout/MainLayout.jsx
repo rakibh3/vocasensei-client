@@ -7,15 +7,15 @@ const MainLayout = () => {
   const authChecked = useAuthCheck();
 
   return !authChecked ? (
-    <div>Checking authentication...</div>
+    <div className="flex justify-center items-center min-h-screen">
+      <p className="text-lg text-green-600">Checking authentication...</p>
+    </div>
   ) : (
-    <main className="min-h-screen place-items-center bg-gradient-to-br from-primary/5 via-secondary/5 to-muted/5">
+    <main className="min-h-screen flex flex-col  bg-gradient-to-br from-primary/5 via-secondary/5 to-muted/5">
       <Navbar />
-      <Outlet />
-      {/* <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex justify-center">
-        </div>
-      </div> */}
+      <div className="mx-auto w-[90%] sm:w-[75%] flex flex-col flex-grow items-center justify-center">
+        <Outlet />
+      </div>
       <Footer />
     </main>
   );

@@ -67,7 +67,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto w-[90%] sm:w-[75%]  flex h-16 items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="mr-6 flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
             <BookOpen className="h-6 w-6" />
             <span className="font-bold">Voca Sensei</span>
           </Link>
@@ -78,11 +78,8 @@ const Navbar = () => {
             <MainNav items={navItems} />
           </div>
 
-          {currentUser && (
-            <div className="ml-4">
-              <UserMenu />
-            </div>
-          )}
+          {/* Based on auth logout button will appeared */}
+          {currentUser && <UserMenu />}
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
