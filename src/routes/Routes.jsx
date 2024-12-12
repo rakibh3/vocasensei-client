@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import AdminLayout from '@/layout/AdminLayout';
 import DashBoard from '@/pages/dashboard/DashBoard';
+import CreateLesson from '@/pages/dashboard/CreateLesson';
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: 'lessons',
         element: <div>Lessons Management</div>,
+      },
+      {
+        path: 'lesson/create',
+        element: <CreateLesson />,
       },
       {
         path: 'tutorials',

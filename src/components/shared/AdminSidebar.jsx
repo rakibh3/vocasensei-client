@@ -1,4 +1,11 @@
-import { LayoutDashboard, Users, BookOpen, Video, LogOut } from 'lucide-react';
+import {
+  LayoutDashboard,
+  Users,
+  BookOpen,
+  BadgePlus,
+  Video,
+  LogOut,
+} from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -20,6 +27,11 @@ const adminNavItems = [
     title: 'Lessons',
     href: 'lessons',
     icon: BookOpen,
+  },
+  {
+    title: 'Create Lesson',
+    href: 'lesson/create',
+    icon: BadgePlus,
   },
   {
     title: 'Tutorials',
