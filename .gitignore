@@ -25,3 +25,4 @@ dist-ssr
 *.sw?
 note.txt
 commit_message.txt
+.vercel

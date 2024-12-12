@@ -6,6 +6,7 @@ import Register from '@/components/auth/Register';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import AdminLayout from '@/layout/AdminLayout';
+import DashBoard from '@/pages/dashboard/DashBoard';
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
       {
         path: '/lessons',
         element: (
-          <PrivateRoute allowedRoles={'user'}>
+          <PrivateRoute allowedRoles={['user']}>
             <div>Lesson</div>
           </PrivateRoute>
         ),
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Dashboard</div>,
+        element: <DashBoard />,
       },
       {
         path: 'users',

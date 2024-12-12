@@ -24,16 +24,6 @@ const Navbar = () => {
   const user = currentUser?.role === 'user';
 
   const navItems = [
-    {
-      title: 'Lessons',
-      href: '/lessons',
-      icon: BookOpen,
-    },
-    {
-      title: 'Tutorials',
-      href: '/tutorials',
-      icon: Video,
-    },
     ...(isAdmin
       ? [
           {
@@ -44,7 +34,18 @@ const Navbar = () => {
         ]
       : []),
     ...(user
-      ? []
+      ? [
+          {
+            title: 'Lessons',
+            href: '/lessons',
+            icon: BookOpen,
+          },
+          {
+            title: 'Tutorials',
+            href: '/tutorials',
+            icon: Video,
+          },
+        ]
       : [
           {
             title: 'Login',

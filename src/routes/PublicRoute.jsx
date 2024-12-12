@@ -7,6 +7,11 @@ const PublicRoute = ({ children }) => {
   if (!currentUser) {
     return children;
   }
-  return <Navigate to="/lessons" replace />;
+
+  if (currentUser?.role === 'admin') {
+    return <Navigate to="/dashboard" />;
+  } else {
+    return <Navigate to="/lessons" replace />;
+  }
 };
 export default PublicRoute;

@@ -9,19 +9,11 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
-import { useDispatch } from 'react-redux';
-import { userLoggedOut } from '@/redux/features/auth/authSlice';
 
 const UserMenu = () => {
-  const dispatch = useDispatch();
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   if (!currentUser) return null;
-
-  const logout = () => {
-    dispatch(userLoggedOut());
-    localStorage.clear();
-  };
 
   const initials = currentUser?.name
     ?.split(' ')
