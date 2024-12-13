@@ -33,6 +33,7 @@ import EditVocabularyDialog from './EditVocabularyDialog';
 
 const Vocabularies = () => {
   const [editingVocabulary, setEditingVocabulary] = useState(null);
+  const [filterLessonNo, setFilterLessonNo] = useState('');
 
   const {
     data: vocabularies,
@@ -108,8 +109,27 @@ const Vocabularies = () => {
     updateVocabulary({ id, payload });
   };
 
+  const filteredVocabularies = filterLessonNo
+    ? vocabularies?.data?.filter((vocabulary) => {
+        return vocabulary.lessonNo === parseInt(filterLessonNo);
+      })
+    : vocabularies.data;
+
   return (
     <div className="space-y-4">
+      <div className="flex items-center gap-4 mb-4">
+        <label htmlFor="lessonFilter" className="text-sm font-medium">
+          Filter by Lesson No:
+        </label>
+        <input
+          id="lessonFilter"
+          type="text"
+          value={filterLessonNo}
+          onChange={(e) => setFilterLessonNo(e.target.value)}
+          placeholder="Enter Lesson No"
+          className="border rounded-md px-2 py-1 text-sm"
+        />
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -124,7 +144,7 @@ const Vocabularies = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {vocabularies?.data?.map((vocabulary) => (
+            {filteredVocabularies?.map((vocabulary) => (
               <TableRow key={vocabulary._id}>
                 <TableCell>{vocabulary?.word}</TableCell>
                 <TableCell>{vocabulary?.meaning}</TableCell>
