@@ -33,10 +33,10 @@ const RegisterForm = () => {
     if (data?.success) {
       navigate('/login');
       toast({
-        title: 'Congratulations!',
+        title: 'Congratulations! You can login now',
         description: `You have successfully registered with email: ${data?.data?.email}`,
         status: 'success',
-        duration: 3000,
+        duration: 5000,
       });
     }
 
