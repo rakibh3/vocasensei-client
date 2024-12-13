@@ -59,6 +59,10 @@ export const router = createBrowserRouter([
           </PublicRoute>
         ),
       },
+      // {
+      //   path: 'tutorials',
+      //   element: <Tutorials />,
+      // },
     ],
   },
   {
@@ -117,10 +121,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: 'tutorials',
-        element: <div>Tutorials Management</div>,
-      },
+      // {
+      //   path: 'tutorials',
+      //   element: <Tutorials />,
+      // },
     ],
   },
 ]);

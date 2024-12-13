@@ -3,7 +3,7 @@ import { Button } from './button';
 import Loader from './loader';
 
 const ButtonLoader = ({
-  loading = false,
+  loading,
   loadingText = 'Loading...',
   children,
   className,
@@ -16,7 +16,14 @@ const ButtonLoader = ({
       disabled={loading || disabled}
       {...props}
     >
-      <span className={cn(loading ? 'invisible' : 'visible')}>{children}</span>
+      <span
+        className={cn(
+          'transition-opacity',
+          loading ? 'opacity-0' : 'opacity-100'
+        )}
+      >
+        {children}
+      </span>
 
       {loading && (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2">

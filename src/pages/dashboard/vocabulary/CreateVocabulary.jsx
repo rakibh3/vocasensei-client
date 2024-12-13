@@ -18,8 +18,6 @@ import InputField from '@/components/ui/form/InputField';
 import { vocabularyCreateFormSchema } from '@/lib/validators/Vocabulary';
 import { useCreateVocabularyMutation } from '@/redux/features/vocabularies/vocabulariesApi';
 
-// import { useCreateLessonMutation } from '@/redux/features/lessons/lessonsApi';
-
 const CreateVocabulary = () => {
   const navigate = useNavigate();
   const form = useForm({
@@ -38,7 +36,7 @@ const CreateVocabulary = () => {
   useEffect(() => {
     if (vocabulary?.success) {
       reset();
-      // navigate('/dashboard/vocabularies');
+      navigate('/dashboard/vocabularies');
       toast({
         title: 'Congratulations!',
         description: `You have successfully created the vocabulary: ${vocabulary?.data?.word}`,
@@ -58,8 +56,6 @@ const CreateVocabulary = () => {
   }, [vocabulary, error, navigate, reset]);
 
   const onSubmit = async (data) => {
-    console.log('CLi');
-    console.log(data);
     createVocabulary(data);
   };
 

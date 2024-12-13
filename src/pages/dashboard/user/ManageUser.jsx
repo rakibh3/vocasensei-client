@@ -15,7 +15,6 @@ const ManageUser = () => {
     isError: isUsersError,
     error: usersError,
   } = useGetAllUsersQuery();
-  console.log(users);
 
   const [
     updateUserRole,
@@ -57,7 +56,7 @@ const ManageUser = () => {
     return <div>Error: {usersError.message}</div>;
   }
 
-  // If there are no lessons, show a no data found message
+  // If there are no user, show a no data found message
   if (users?.data?.length === 0) {
     return <div>No user found</div>;
   }

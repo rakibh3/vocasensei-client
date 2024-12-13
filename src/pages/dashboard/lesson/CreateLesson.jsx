@@ -28,7 +28,7 @@ const CreateLesson = () => {
     },
   });
 
-  const { reset } = form;
+  const { reset, isSubmitting } = form;
 
   const [createLesson, { data: lesson, isLoading, error }] =
     useCreateLessonMutation();
@@ -93,7 +93,7 @@ const CreateLesson = () => {
               <ButtonLoader
                 type="submit"
                 className="w-full"
-                loading={form.formState.isSubmitting}
+                loading={isSubmitting}
                 disabled={isLoading}
                 loadingText="Creating..."
               >

@@ -74,7 +74,6 @@ const Lessons = () => {
     }
 
     if (updateError?.data) {
-      console.log(updateError);
       toast({
         title: 'Update Failed',
         description:

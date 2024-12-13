@@ -30,13 +30,6 @@ const LessonPage = () => {
     return <div>No lessons found!</div>;
   }
 
-  //   const lesson = data?.data?.find((l) => l.id === lessonId);
-  //   console.log(lesson);
-
-  //   if (!lesson) {
-  //     return <div>Lesson not found</div>;
-  //   }
-
   const progress = ((currentIndex + 1) / data?.data?.length) * 100;
   const isLastWord = currentIndex === data?.data?.length - 1;
 
@@ -46,7 +39,7 @@ const LessonPage = () => {
       setTimeout(() => {
         setShowConfetti(false);
         navigate('/');
-      }, 6000);
+      }, 4000);
     } else {
       setCurrentIndex((prev) => prev + 1);
     }

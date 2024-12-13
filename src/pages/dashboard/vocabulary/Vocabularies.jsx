@@ -94,9 +94,9 @@ const Vocabularies = () => {
     return <div>Error: {vocabulariesError.message}</div>;
   }
 
-  // If there are no lessons, show a no data found message
+  // If there are no vocabularies, show a no data found message
   if (vocabularies?.data?.length === 0) {
-    return <div>No lessons found</div>;
+    return <div>No Vocabularies Found</div>;
   }
 
   const handleDelete = async (id) => {

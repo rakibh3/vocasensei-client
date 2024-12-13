@@ -15,7 +15,6 @@ export const authApi = baseApi.injectEndpoints({
     // Endpoint to update user role
     updateUserRole: builder.mutation({
       query: ({ id, role }) => {
-        console.log(id, role);
         return {
           url: `/user/${id}`,
           method: 'PATCH',

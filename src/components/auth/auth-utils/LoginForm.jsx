@@ -39,7 +39,6 @@ const LoginForm = () => {
     }
 
     if (error?.data) {
-      console.log(error);
       toast({
         title: 'Login Failed',
         description: error.data.errorMessage || error?.data?.message,
