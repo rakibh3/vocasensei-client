@@ -35,7 +35,7 @@ export function TutorialForm({ initialData, onSubmit, onCancel }) {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="videoUrl">Video URL</Label>
+        <Label htmlFor="videoUrl">Youtube Embed Code</Label>
         <Input id="videoUrl" {...register('videoUrl')} />
         {errors.videoUrl && (
           <p className="text-sm text-red-500">{errors.videoUrl.message}</p>
