@@ -2,10 +2,10 @@ import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 
 export function FooterSocial() {
   const socialLinks = [
-    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: Youtube, href: 'https://youtube.com', label: 'Youtube' },
+    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Youtube, href: '#', label: 'Youtube' },
   ];
 
   return (
