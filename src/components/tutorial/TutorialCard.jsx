@@ -7,8 +7,10 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/useAuth';
 
 export function TutorialCard({ tutorial, onEdit, onDelete }) {
+  const { currentUser } = useAuth();
   return (
     <Card className="w-full">
       <CardHeader>
@@ -18,7 +20,7 @@ export function TutorialCard({ tutorial, onEdit, onDelete }) {
       <CardContent>
         <div className="aspect-video w-full">
           <iframe
-            src={tutorial.videoUrl}
+            src={`https://www.youtube.com/embed/${tutorial.videoId}`}
             className="w-full h-full rounded-md"
             allowFullScreen
             title={tutorial.title}
@@ -26,12 +28,19 @@ export function TutorialCard({ tutorial, onEdit, onDelete }) {
         </div>
       </CardContent>
       <CardFooter className="flex justify-end space-x-2">
-        <Button variant="outline" onClick={() => onEdit(tutorial)}>
-          Edit
-        </Button>
-        <Button variant="destructive" onClick={() => onDelete(tutorial._id)}>
-          Delete
-        </Button>
+        {currentUser?.role === 'admin' && (
+          <>
+            <Button variant="outline" onClick={() => onEdit(tutorial)}>
+              Edit
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => onDelete(tutorial._id)}
+            >
+              Delete
+            </Button>
+          </>
+        )}
       </CardFooter>
     </Card>
   );

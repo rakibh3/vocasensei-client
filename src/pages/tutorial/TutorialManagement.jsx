@@ -9,8 +9,10 @@ import {
   useDeleteTutorialMutation,
   useUpdateTutorialMutation,
 } from '@/redux/features/tutorial/tutorialApi';
+import { useAuth } from '@/hooks/useAuth';
 
 export function TutorialManagement() {
+  const { currentUser } = useAuth();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedTutorial, setSelectedTutorial] = useState();
 
@@ -125,7 +127,9 @@ export function TutorialManagement() {
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Tutorial Management</h1>
-        <Button onClick={openCreateDialog}>Add Tutorial</Button>
+        {currentUser?.role === 'admin' && (
+          <Button onClick={openCreateDialog}>Create Tutorial</Button>
+        )}
       </div>
 
       <TutorialList onEdit={openEditDialog} onDelete={handleDelete} />
