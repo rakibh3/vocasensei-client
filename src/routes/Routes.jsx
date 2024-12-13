@@ -14,6 +14,7 @@ import ManageUser from '@/pages/dashboard/user/ManageUser';
 import LessonsPage from '@/pages/home/lessonsPage/LessonsPage';
 import LessonPage from '@/pages/home/lessonsPage/LessonPage';
 import { TutorialManagement } from '@/pages/tutorial/TutorialManagement';
+import NotFound from '@/components/NotFound';
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
             <TutorialManagement />,
           </PrivateRoute>
         ),
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },
@@ -134,6 +139,10 @@ export const router = createBrowserRouter([
             <TutorialManagement />,
           </PrivateRoute>
         ),
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },
