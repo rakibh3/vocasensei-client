@@ -25,11 +25,13 @@ export const tutorialApi = baseApi.injectEndpoints({
 
     // Update an existing tutorial
     updateTutorial: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/tutorial/edit/${id}`,
-        method: 'PATCH',
-        body: data,
-      }),
+      query: ({ id, data }) => {
+        return {
+          url: `/tutorial/edit/${id}`,
+          method: 'PATCH',
+          body: data,
+        };
+      },
       invalidatesTags: ['Tutorial'],
     }),
     // Delete an existing tutorial

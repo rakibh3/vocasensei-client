@@ -13,6 +13,7 @@ import Vocabularies from '@/pages/dashboard/vocabulary/Vocabularies';
 import ManageUser from '@/pages/dashboard/user/ManageUser';
 import LessonsPage from '@/pages/home/lessonsPage/LessonsPage';
 import LessonPage from '@/pages/home/lessonsPage/LessonPage';
+import { TutorialManagement } from '@/pages/tutorial/TutorialManagement';
 
 export const router = createBrowserRouter([
   {
@@ -59,10 +60,10 @@ export const router = createBrowserRouter([
           </PublicRoute>
         ),
       },
-      // {
-      //   path: 'tutorials',
-      //   element: <Tutorials />,
-      // },
+      {
+        path: 'tutorials',
+        element: <TutorialManagement />,
+      },
     ],
   },
   {
@@ -121,10 +122,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: 'tutorials',
-      //   element: <Tutorials />,
-      // },
+      {
+        path: 'tutorials',
+        element: <TutorialManagement />,
+      },
     ],
   },
 ]);

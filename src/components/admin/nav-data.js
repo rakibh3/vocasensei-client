@@ -67,11 +67,6 @@ export const adminNavData = [
         href: 'tutorials',
         icon: Video,
       },
-      // {
-      //   title: 'Add Tutorial',
-      //   href: 'tutorial/create',
-      //   icon: VideoPlus,
-      // },
     ],
   },
 ];
