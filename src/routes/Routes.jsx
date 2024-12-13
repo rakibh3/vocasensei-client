@@ -62,7 +62,12 @@ export const router = createBrowserRouter([
       },
       {
         path: 'tutorials',
-        element: <TutorialManagement />,
+
+        element: (
+          <PrivateRoute allowedRoles={['user', 'admin']}>
+            <TutorialManagement />,
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -124,7 +129,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'tutorials',
-        element: <TutorialManagement />,
+        element: (
+          <PrivateRoute allowedRoles={['user', 'admin']}>
+            <TutorialManagement />,
+          </PrivateRoute>
+        ),
       },
     ],
   },
